@@ -1,5 +1,9 @@
+#load tidyverse and readxl libraries
 library(tidyverse)
-#Test joining relational data with dplyr and tidyverse
+library(readxl)
+
+#Goal of this code: 
+#Test and then implement joining relational data with dplyr and tidyverse
 #Mutating joins adds new variables to one data from from matching observations in another
 #The goal is to add the variant genomic, cDNA and protein notations to the relational data frame 
 #that has the patient ID, symptom, and organ. First, create a smaller test dataset to train on. 
@@ -37,5 +41,13 @@ Join1
 #selecting only the columns we want, not the columns we don't
 Select1 <- select(Join1, PatientID, VariantNames, Symptom, Organ)
 Select1
+
+#importing dataframe1 that has PatientID, VariantNames, and DataIDontWantToXfer
+ASAH1PatientIDsVariantsForJoin20230808 <- read_excel("~/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Research Summaries/Farber Disease Research Summaries/VariantAnalysis/JoiningDataForOrganAnalysis/ASAH1PatientIDsVariantsForJoin20230808.xlsx")
+View(ASAH1PatientIDsVariantsForJoin20230808)
+
+#import dataframe2 that has the PatientID, symptom, and organ
+SymptomsByOrganForJoin20230808 <- read_excel("~/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Research Summaries/Farber Disease Research Summaries/VariantAnalysis/JoiningDataForOrganAnalysis/SymptomsByOrganForJoin20230808.xlsx")
+View(SymptomsByOrganForJoin20230808)
 
 
