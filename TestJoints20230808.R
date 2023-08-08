@@ -10,15 +10,15 @@ library(readxl)
 
 #creating a simulation dataset for the PatientID, VariantNames, and DataIDontWantToXfer
 #example can be read about on https://bookdown.org/hneth/ds4psy/5-2-tibbles-essentials.html 
-Dataframe1 <- tibble(
+TestDataframe1 <- tibble(
   'PatientID' = c("PatientID1", "PatientID2", "PatientID3", "PatientID4"), 
   'VariantNames' = c("c.831A>G", "p.W194H", "8001393193932T>C", "IVS5+3A>G"), 
   'DataIDontWantToXfer' = c("United States", "Canada", "Mexico", "Argentina")
 )
-Dataframe1
+TestDataframe1
 
 #creating a simulation dataset for the PatientID, symptom, and organ
-Dataframe2 <- tibble(
+TestDataframe2 <- tibble(
   'PatientID' = c("PatientID1", "PatientID1", "PatientID1", 
                   "PatientID2", "PatientID2","PatientID3", 
                   "PatientID3","PatientID3","PatientID3"),
@@ -29,18 +29,18 @@ Dataframe2 <- tibble(
               "muscle", "muscle", "skin", 
               "bone", "bone", "lungs")
 )
-Dataframe2
+TestDataframe2
 
 #Matching joins, adding the VariantName from Dataframe1 into Dataframe2 
 #Choosing a left_join where the left dataframe is the one with the variant IDs will alert me
 #with the creation of an NA if any of the variant IDs lack symptom and organ 
 #information (which they should all have).
-Join1 <- left_join(Dataframe1, Dataframe2, by = "PatientID")
-Join1
+TestJoin1 <- left_join(TestDataframe1, TestDataframe2, by = "PatientID")
+TestJoin1
 
 #selecting only the columns we want, not the columns we don't
-Select1 <- select(Join1, PatientID, VariantNames, Symptom, Organ)
-Select1
+TestSelect1 <- select(TestJoin1, PatientID, VariantNames, Symptom, Organ)
+TestSelect1
 
 #importing dataframe1 that has PatientID, VariantNames, and DataIDontWantToXfer
 ASAH1PatientIDsVariantsForJoin20230808 <- read_excel("~/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Research Summaries/Farber Disease Research Summaries/VariantAnalysis/JoiningDataForOrganAnalysis/ASAH1PatientIDsVariantsForJoin20230808.xlsx")
@@ -50,4 +50,7 @@ View(ASAH1PatientIDsVariantsForJoin20230808)
 SymptomsByOrganForJoin20230808 <- read_excel("~/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Research Summaries/Farber Disease Research Summaries/VariantAnalysis/JoiningDataForOrganAnalysis/SymptomsByOrganForJoin20230808.xlsx")
 View(SymptomsByOrganForJoin20230808)
 
+#Matching joins, adding variant names from ASAH1PatientIDsVariantsForJoin20230808 to SymptomsByOrganForJoin20230808
+Join1 <- left_join(ASAH1PatientIDsVariantsForJoin20230808, SymptomsByOrganForJoin20230808, by = "PatientID")
+Join1
 
