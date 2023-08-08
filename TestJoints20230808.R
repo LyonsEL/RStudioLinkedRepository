@@ -43,14 +43,14 @@ TestSelect1 <- select(TestJoin1, PatientID, VariantNames, Symptom, Organ)
 TestSelect1
 
 #importing dataframe1 that has PatientID, VariantNames, and DataIDontWantToXfer
-ASAH1PatientIDsVariantsForJoin20230808 <- read_excel("~/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Research Summaries/Farber Disease Research Summaries/VariantAnalysis/JoiningDataForOrganAnalysis/ASAH1PatientIDsVariantsForJoin20230808.xlsx")
-View(ASAH1PatientIDsVariantsForJoin20230808)
+ASAH1PatientIDsVariantsOnly20230808 <- read_excel("~/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Research Summaries/Farber Disease Research Summaries/VariantAnalysis/JoiningDataForOrganAnalysis/ASAH1PatientIDsVariantsOnly20230808.xlsx")
+View(ASAH1PatientIDsVariantsOnly20230808)
 
 #import dataframe2 that has the PatientID, symptom, and organ
 SymptomsByOrganForJoin20230808 <- read_excel("~/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Research Summaries/Farber Disease Research Summaries/VariantAnalysis/JoiningDataForOrganAnalysis/SymptomsByOrganForJoin20230808.xlsx")
 View(SymptomsByOrganForJoin20230808)
 
 #Matching joins, adding variant names from ASAH1PatientIDsVariantsForJoin20230808 to SymptomsByOrganForJoin20230808
-Join1 <- left_join(ASAH1PatientIDsVariantsForJoin20230808, SymptomsByOrganForJoin20230808, by = "PatientID")
+Join1 <- left_join(ASAH1PatientIDsVariantsOnly20230808, SymptomsByOrganForJoin20230808, by = "PatientID")
 Join1
 
