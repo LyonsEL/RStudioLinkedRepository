@@ -31,4 +31,11 @@ Dataframe2
 #Choosing a left_join where the left dataframe is the one with the variant IDs will alert me
 #with the creation of an NA if any of the variant IDs lack symptom and organ 
 #information (which they should all have).
-left_join(Dataframe1, Dataframe2, by = "PatientID")
+Join1 <- left_join(Dataframe1, Dataframe2, by = "PatientID")
+Join1
+
+#selecting only the columns we want, not the columns we don't
+Select1 <- select(Join1, PatientID, VariantNames, Symptom, Organ)
+Select1
+
+
