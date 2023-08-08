@@ -7,17 +7,17 @@ library(tidyverse)
 #creating a simulation dataset for the PatientID, VariantNames, and DataIDontWantToXfer
 #example can be read about on https://bookdown.org/hneth/ds4psy/5-2-tibbles-essentials.html 
 Dataframe1 <- tibble(
-  'PatientID' = c("Author1", "Author2", "Author3"), 
-  'VariantNames' = c("c.831A>G", "p.W194H", "8001393193932T>C"), 
-  'DataIDontWantToXfer' = c("United States", "Canada", "Mexico")
+  'PatientID' = c("PatientID1", "PatientID2", "PatientID3", "PatientID4"), 
+  'VariantNames' = c("c.831A>G", "p.W194H", "8001393193932T>C", "IVS5+3A>G"), 
+  'DataIDontWantToXfer' = c("United States", "Canada", "Mexico", "Argentina")
 )
 Dataframe1
 
 #creating a simulation dataset for the PatientID, symptom, and organ
 Dataframe2 <- tibble(
-  'PatientID' = c("Author1", "Author1", "Author1", 
-                  "Author2", "Author2","Author3", 
-                  "Author3","Author3","Author3"),
+  'PatientID' = c("PatientID1", "PatientID1", "PatientID1", 
+                  "PatientID2", "PatientID2","PatientID3", 
+                  "PatientID3","PatientID3","PatientID3"),
   'Symptom' = c("inflammatory nodules","hoarseness", "arthritis",
                 "motor deficit", "weakness", "nodules", 
                 "contracture", "osteopenia", "respiratory distress"), 
@@ -26,3 +26,9 @@ Dataframe2 <- tibble(
               "bone", "bone", "lungs")
 )
 Dataframe2
+
+#Matching joins, adding the VariantName from Dataframe1 into Dataframe2 
+#Choosing a left_join where the left dataframe is the one with the variant IDs will alert me
+#with the creation of an NA if any of the variant IDs lack symptom and organ 
+#information (which they should all have).
+left_join(Dataframe1, Dataframe2, by = "PatientID")
