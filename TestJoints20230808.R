@@ -32,9 +32,9 @@ TestDataframe2 <- tibble(
 TestDataframe2
 
 #Matching joins, adding the VariantName from Dataframe1 into Dataframe2 
-#Choosing a left_join where the left dataframe is the one with the variant IDs will alert me
-#with the creation of an NA if any of the variant IDs lack symptom and organ 
-#information (which they should all have).
+#Choosing a left_join where the left dataframe is the one with the variant 
+#IDs will alert me with the creation of an NA if any of the variant IDs 
+#lack symptom and organ information (which they should all have).
 TestJoin1 <- left_join(TestDataframe1, TestDataframe2, by = "PatientID")
 TestJoin1
 
@@ -52,5 +52,8 @@ View(SymptomsByOrganForJoin20230808)
 
 #Matching joins, adding variant names from ASAH1PatientIDsVariantsForJoin20230808 to SymptomsByOrganForJoin20230808
 Join1 <- left_join(ASAH1PatientIDsVariantsOnly20230808, SymptomsByOrganForJoin20230808, by = "PatientID")
-Join1
+View(Join1)
 
+#Filter all the patients and variants with symptoms in one specific organ
+FilteredByBrain <- filter(Join1, Organ == "brain")
+View(FilteredByBrain)
